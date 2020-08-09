@@ -1,0 +1,97 @@
+@import "../../config";
+
+.start-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $tertiary-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../../images/background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 5;
+  transition: 0.3s;
+
+  &::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: -1;
+  }
+
+  &--hide {
+    display: none;
+  }
+
+  &__info {
+    padding: 20px;
+    height: 400px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(20, 130, 59, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.9);
+    border-radius: 50px;
+    transition: 0.3s;
+
+    &--grow {
+      animation: grow 0.5s linear forwards;
+    }
+
+    &-text {
+      margin-top: 5px;
+      text-align: center;
+      color: white;
+    }
+
+    &-control {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      text-align: center;
+      position: relative;
+
+      &-input {
+        padding: 5px;
+        margin: 10px auto 0;
+        width: 200px;
+        border-radius: 5px;
+        border: none;
+        text-align: center;
+        font-size: 1.1rem;
+
+        &-players {
+          padding: 7px;
+          margin-left: 10px;
+          margin-top: 20px;
+          width: 40px;
+          border-radius: 5px;
+          border: none;
+        }
+      }
+      &-button {
+        margin: 15px 30px 10px;
+        width: 100px;
+        align-self: center;
+        font-size: 1rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+        transition: 0.3s;
+
+        &:hover {
+          background-color: $secondary-color;
+          color: white;
+        }
+      }
+    }
+  }
+}

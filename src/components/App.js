@@ -8,7 +8,15 @@ class App extends React.Component {
     cardsDeckId: 0,
     playersCount: 1,
     gameOn: true,
-    players: [],
+    showStartScreen: true,
+    players: [
+      {
+        id: 0,
+        name: `Player 1`,
+        score: 0,
+        cardsNum: 0,
+      },
+    ],
     lostArray: [],
     passArray: [],
   };
@@ -48,6 +56,7 @@ class App extends React.Component {
         };
         players.push(playerObject);
       }
+
       this.setState({
         playersCount: +setPlayers,
         players: players,
@@ -69,6 +78,12 @@ class App extends React.Component {
     });
   };
 
+  handleHideShowScreen = () => {
+    this.setState({
+      showStartScreen: false,
+    });
+  };
+
   render() {
     return (
       <>
@@ -76,8 +91,10 @@ class App extends React.Component {
         <div className="wrapper" id="wrapper">
           <StartScreen
             playersCount={this.state.playersCount}
+            players={this.state.players}
             changed={this.updatePlayersCount}
             updated={this.updatePlayersNames}
+            showStartScreen={this.handleHideShowScreen}
           />
           {/* <GameTable /> */}
         </div>

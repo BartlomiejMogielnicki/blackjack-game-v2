@@ -11,7 +11,12 @@ const StartScreen = (props) => {
     playersInputs.push(i);
   }
   const inputs = playersInputs.map((player) => (
-    <NewPlayerInput player={player} key={player} updated={props.updated} />
+    <NewPlayerInput
+      player={player}
+      key={player}
+      updated={props.updated}
+      players={props.players}
+    />
   ));
   return (
     <div className="start-screen" id="start-screen">
@@ -22,11 +27,12 @@ const StartScreen = (props) => {
           changed={props.changed}
           playersCount={props.playersCount}
         />
+
+        <form className="start-screen__info-control" id="info-control">
+          {inputs}
+        </form>
+        <MainButton clicked={props.showStartScreen} />
       </div>
-      <form className="start-screen__info-control" id="info-control">
-        {inputs}
-      </form>
-      <MainButton />
     </div>
   );
 };
