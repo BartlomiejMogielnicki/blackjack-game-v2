@@ -89,14 +89,20 @@ class App extends React.Component {
       <>
         <h1 className="title">Blackjack</h1>
         <div className="wrapper" id="wrapper">
-          <StartScreen
-            playersCount={this.state.playersCount}
-            players={this.state.players}
-            changed={this.updatePlayersCount}
-            updated={this.updatePlayersNames}
-            showStartScreen={this.handleHideShowScreen}
-          />
-          {/* <GameTable /> */}
+          {this.state.showStartScreen ? (
+            <StartScreen
+              playersCount={this.state.playersCount}
+              players={this.state.players}
+              changed={this.updatePlayersCount}
+              updated={this.updatePlayersNames}
+              showStartScreen={this.handleHideShowScreen}
+            />
+          ) : (
+            <GameTable
+              playersCount={this.state.playersCount}
+              players={this.state.players}
+            />
+          )}
         </div>
       </>
     );

@@ -3,9 +3,7 @@ import "./NewPlayerInput.scss";
 
 const NewPlayerInput = ({ player, id, updated, players }) => {
   const name = `player${player - 1}-name`;
-  const value = `Player ${player}`;
   const playerArrNumber = player - 1;
-  console.log(players);
   return (
     <label className="start-screen__info-control-input-label">
       <i className="fas fa-user"></i>
