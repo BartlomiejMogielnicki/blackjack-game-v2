@@ -7,14 +7,16 @@ class App extends React.Component {
   state = {
     cardsDeckId: 0,
     playersCount: 1,
+    activePlayer: 0,
     gameOn: true,
     showStartScreen: true,
     players: [
       {
         id: 0,
-        name: `Player 1`,
+        name: "Player 1",
         score: 0,
         cardsNum: 0,
+        status: "In game",
       },
     ],
     lostArray: [],
@@ -53,6 +55,7 @@ class App extends React.Component {
           name: `Player ${i + 1}`,
           score: 0,
           cardsNum: 0,
+          status: "In game",
         };
         players.push(playerObject);
       }
@@ -78,8 +81,34 @@ class App extends React.Component {
     });
   };
 
-  handleHideShowScreen = () => {
+  // Add casino croupier player if single player
+  addCroupierIfNeeded = () => {
+    const players = [...this.state.players];
+    if (players.length === 1) {
+      const playerCpuObject = {
+        id: 1,
+        name: "Croupier",
+        score: 0,
+        cardsNum: 0,
+        status: "In game",
+      };
+      players.push(playerCpuObject);
+
+      this.setState({
+        players,
+      });
+    }
+  };
+
+  handleStartNewGame = () => {
+    this.addCroupierIfNeeded();
+
+    // Restart data
     this.setState({
+      lostArray: [],
+      passArray: [],
+      activePlayer: 0,
+      gameOn: true,
       showStartScreen: false,
     });
   };
@@ -95,12 +124,13 @@ class App extends React.Component {
               players={this.state.players}
               changed={this.updatePlayersCount}
               updated={this.updatePlayersNames}
-              showStartScreen={this.handleHideShowScreen}
+              clicked={this.handleStartNewGame}
             />
           ) : (
             <GameTable
               playersCount={this.state.playersCount}
               players={this.state.players}
+              activePlayer={this.state.activePlayer}
             />
           )}
         </div>

@@ -31,7 +31,7 @@ const StartScreen = (props) => {
         <form className="start-screen__info-control" id="info-control">
           {inputs}
         </form>
-        <MainButton clicked={props.showStartScreen} />
+        <MainButton clicked={props.clicked} />
       </div>
     </div>
   );
