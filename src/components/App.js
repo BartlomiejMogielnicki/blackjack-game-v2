@@ -35,14 +35,6 @@ class App extends React.Component {
     return cardsDeckId;
   };
 
-  // Set new cards deck id
-  async componentDidMount() {
-    const cardsDeckId = await this.getNewCardsDeck();
-    this.setState({
-      cardsDeckId,
-    });
-  }
-
   // Update players count
   updatePlayersCount = (setPlayers) => {
     // Prevent set other values than 1-4
@@ -100,8 +92,14 @@ class App extends React.Component {
     }
   };
 
-  handleStartNewGame = () => {
+  handleStartNewGame = async () => {
     this.addCroupierIfNeeded();
+
+    // Get new cards deck ID
+    const cardsDeckId = await this.getNewCardsDeck();
+    this.setState({
+      cardsDeckId,
+    });
 
     // Restart data
     this.setState({
