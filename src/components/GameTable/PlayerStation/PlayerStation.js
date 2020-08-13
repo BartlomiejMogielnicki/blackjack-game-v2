@@ -9,7 +9,7 @@ const PlayerStation = ({
   playerStatus,
   activePlayer,
 }) => {
-  // Declare classnames dependency on index number
+  // Declare classnames dependent on index number
   let classNumber;
   // For two players set them in duel positions
   if (playersCount > 2) {

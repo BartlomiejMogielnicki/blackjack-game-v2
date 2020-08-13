@@ -92,6 +92,56 @@ class App extends React.Component {
     }
   };
 
+  // Pull one card from deck
+  pullOneCard = async (activePlayer) => {
+    fetch(
+      `https://deckofcardsapi.com/api/deck/${this.state.cardsDeckId}/draw/?count=1`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        // Set points value for specific cards
+        let points = data.cards[0].value;
+        switch (points) {
+          case "ACE":
+            points = 11;
+            break;
+          case "KING":
+            points = 4;
+            break;
+          case "QUEEN":
+            points = 3;
+            break;
+          case "JACK":
+            points = 2;
+            break;
+          default:
+            points = parseInt(data.cards[0].value);
+        }
+        console.log(data);
+        console.log(points);
+        // Update player score and cards number
+        const players = [...this.state.players];
+        players[activePlayer].score += points;
+        players[activePlayer].cardsNum++;
+        this.setState({
+          players,
+        });
+      });
+  };
+
+  // Pull two starting cards
+  pullStartCards = () => {
+    // Check if player has no cards and game is not finished
+    if (this.state.players[this.state.activePlayer].cardsNum === 0) {
+      // Pull first card
+      this.pullOneCard(this.state.activePlayer);
+      // Pull second card with delay
+      setTimeout(() => {
+        this.pullOneCard(this.state.activePlayer);
+      }, 800);
+    }
+  };
+
   handleStartNewGame = async () => {
     this.addCroupierIfNeeded();
 
@@ -109,6 +159,8 @@ class App extends React.Component {
       gameOn: true,
       showStartScreen: false,
     });
+
+    this.pullStartCards();
   };
 
   render() {
