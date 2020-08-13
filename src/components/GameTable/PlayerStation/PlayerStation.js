@@ -1,11 +1,13 @@
 import React from "react";
 import "./PlayerStation.scss";
+import PlayerPulledCard from "./PlayerPulledCard/PlayerPulledCard";
 
 const PlayerStation = ({
   name,
   index,
   playersCount,
   playerScore,
+  playerCards,
   playerStatus,
   activePlayer,
 }) => {
@@ -50,12 +52,27 @@ const PlayerStation = ({
     playerClass = `game__player game__player-${classNumber} game__player--active`;
   }
 
+  // Create pulled cards object
+  let cards = [];
+  if (playerCards) {
+    cards = playerCards.map((card, index) => (
+      <PlayerPulledCard
+        key={index}
+        cardValue={card.cardValue}
+        cardSuit={card.cardSuit}
+        cardImage={card.cardImage}
+      />
+    ));
+  }
+
   return (
     <div className={playerClass}>
       <h3 className="game__player-name" id={`player-${index}-position-name`}>
         {name}
       </h3>
-      <div className="game__player-cards" id={`cards-${index}`}></div>
+      <div className="game__player-cards" id={`cards-${index}`}>
+        {cards}
+      </div>
       <span className="game__player-score" id={`score-${index}`}>
         {`Points: ${playerScore}/21`}
       </span>

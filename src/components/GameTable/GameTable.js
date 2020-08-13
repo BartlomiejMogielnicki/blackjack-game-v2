@@ -9,6 +9,7 @@ const GameTable = (props) => {
     <PlayerStation
       playerScore={player.score}
       playerStatus={player.status}
+      playerCards={player.cardsArr}
       playersCount={props.playersCount}
       activePlayer={props.activePlayer}
       name={player.name}

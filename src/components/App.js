@@ -16,6 +16,7 @@ class App extends React.Component {
         name: "Player 1",
         score: 0,
         cardsNum: 0,
+        cardsArr: [],
         status: "In game",
       },
     ],
@@ -47,6 +48,7 @@ class App extends React.Component {
           name: `Player ${i + 1}`,
           score: 0,
           cardsNum: 0,
+          cardsArr: [],
           status: "In game",
         };
         players.push(playerObject);
@@ -117,12 +119,15 @@ class App extends React.Component {
           default:
             points = parseInt(data.cards[0].value);
         }
-        console.log(data);
-        console.log(points);
-        // Update player score and cards number
+        // Update player score and cards
         const players = [...this.state.players];
         players[activePlayer].score += points;
         players[activePlayer].cardsNum++;
+        players[activePlayer].cardsArr.push({
+          cardValue: data.cards[0].value,
+          cardSuit: data.cards[0].suit,
+          cardImage: data.cards[0].image,
+        });
         this.setState({
           players,
         });
