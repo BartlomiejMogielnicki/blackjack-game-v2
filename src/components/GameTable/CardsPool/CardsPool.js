@@ -2,9 +2,13 @@ import React from "react";
 import "./CardsPool.scss";
 import cardImage from "../../../images/card-pool.png";
 
-const CardsPool = () => {
+const CardsPool = ({ pullCardFn, activePlayer }) => {
   return (
-    <div className="game__cards-pool" id="cards-pool">
+    <div
+      className="game__cards-pool"
+      id="cards-pool"
+      onClick={() => pullCardFn(activePlayer)}
+    >
       <img
         className="game__cards-pool-image"
         src={cardImage}

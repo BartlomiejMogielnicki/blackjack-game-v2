@@ -24,6 +24,14 @@ class App extends React.Component {
     passArray: [],
   };
 
+  checkScore = () => {
+    console.log("Score checked!");
+  };
+
+  componentDidUpdate() {
+    this.checkScore();
+  }
+
   // Get new cards deck id from API
   getNewCardsDeck = async () => {
     let cardsDeckId = await fetch(
@@ -186,6 +194,7 @@ class App extends React.Component {
               playersCount={this.state.playersCount}
               players={this.state.players}
               activePlayer={this.state.activePlayer}
+              pullCardFn={this.pullOneCard}
             />
           )}
         </div>

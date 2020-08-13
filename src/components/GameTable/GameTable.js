@@ -20,7 +20,10 @@ const GameTable = (props) => {
   return (
     <div className="game">
       {players}
-      <CardsPool />
+      <CardsPool
+        pullCardFn={props.pullCardFn}
+        activePlayer={props.activePlayer}
+      />
       <GameResult />
       <button className="game__button-pass" id="btn-pass">
         Pass
