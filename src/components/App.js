@@ -176,6 +176,19 @@ class App extends React.Component {
     this.pullStartCards();
   };
 
+  // Pass turn when click pass button
+  handlePassTurn = (activePlayer) => {
+    const players = [...this.state.players];
+    const passArr = [...this.state.passArray];
+    players[activePlayer].status = "Passed";
+    passArr.push(players[activePlayer].score);
+    this.setState((prevState) => ({
+      activePlayer: prevState.activePlayer++,
+      players,
+      passArr,
+    }));
+  };
+
   render() {
     return (
       <>
@@ -195,6 +208,7 @@ class App extends React.Component {
               players={this.state.players}
               activePlayer={this.state.activePlayer}
               pullCardFn={this.pullOneCard}
+              passTurnFn={this.handlePassTurn}
             />
           )}
         </div>

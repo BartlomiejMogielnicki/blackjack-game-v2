@@ -1,5 +1,4 @@
 import React from "react";
-import "./PlayerStation.scss";
 import PlayerPulledCard from "./PlayerPulledCard/PlayerPulledCard";
 
 const PlayerStation = ({

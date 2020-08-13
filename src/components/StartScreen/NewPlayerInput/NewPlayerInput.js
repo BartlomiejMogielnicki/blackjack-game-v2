@@ -1,5 +1,4 @@
 import React from "react";
-import "./NewPlayerInput.scss";
 
 const NewPlayerInput = ({ player, id, updated, players }) => {
   const name = `player${player - 1}-name`;

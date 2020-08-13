@@ -25,7 +25,10 @@ const GameTable = (props) => {
         activePlayer={props.activePlayer}
       />
       <GameResult />
-      <button className="game__button-pass" id="btn-pass">
+      <button
+        className="game__button-pass"
+        onClick={() => props.passTurnFn(props.activePlayer)}
+      >
         Pass
       </button>
     </div>

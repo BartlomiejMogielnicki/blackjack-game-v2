@@ -1,5 +1,4 @@
 import React from "react";
-import "./CardsPool.scss";
 import cardImage from "../../../images/card-pool.png";
 
 const CardsPool = ({ pullCardFn, activePlayer }) => {

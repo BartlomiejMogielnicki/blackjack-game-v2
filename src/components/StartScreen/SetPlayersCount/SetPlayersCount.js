@@ -1,5 +1,4 @@
 import React from "react";
-import "./SetPlayersCount.scss";
 
 const SetPlayersCount = (props) => {
   return (
